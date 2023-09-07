@@ -1,41 +1,27 @@
-<!--      
-    // include('connection.php');  
-    // $username = $_POST['username'];  
-    // $password = $_POST['password'];  
-      
-    //     //to prevent from mysqli injection  
-    //     $username = stripcslashes($username);  
-    //     $password = stripcslashes($password);  
-    //     $username = mysqli_real_escape_string($con, $username);  
-    //     $password = mysqli_real_escape_string($con, $password);  
-      
-    //     $sql = "select *from login where username = '$username' and password = '$password'";  
-    //     $result = mysqli_query($con, $sql);  
-    //     $row = mysqli_fetch_array($result, MYSQLI_ASSOC);  
-    //     $count = mysqli_num_rows($result);  
-          
-    //     if($count == 1){  
-    //         header("Location: dashboard.html");
-    //         die();
-    //     }  
-    //     else{  
-    //         echo "<h1> Login failed. Invalid username or password.</h1>";  
-    //     }    -->
-  
 <?php
     session_start();
-    if(!isset($_SESSION["username"]))
-    {
-	header("location:login.php");
-    }
-    include('connection.php');
+    // if(!isset($_SESSION["username"]))
+    // {
+	// header("location:login.php");
+    // }
+
+   
+    $host = "localhost";  
+    $user = "root";  
+    $password = "password";  
+    $db = "P";  
+
+    $data = mysqli_connect($host, $user, $password, $db);  
+    if($data===false) {  
+        die("Connection error");  
+    }  
+
     $username=$_POST['username'];
     $password = $_POST['password'];
-    var_dump($_POST);
-
     $sql="select * from login where username = '$username' and password = '$password'";
     $result=mysqli_query($data,$sql);
     $row=mysqli_fetch_array($result);
+    $count = mysqli_num_rows($result);
 
     if ($row) {
         $usertype = $row['usertype'];
@@ -57,6 +43,17 @@
         header("location:adminhome.php");
         exit;
     }
-    else echo 'username or password is incorrect!';
-}
+    }   
+    elseif($count !== 1) {
+            //  header("location:login.php");
+        // echo '<script type="text/javascript">';
+        // echo ' alert("username or password is incorrect!")';  //not showing an alert box.
+        // echo 'window.location = 'login.php'';
+        // echo '</script>';
+        echo "<script>
+        alert('Username or password is incorrect!');
+        window.location.href='login.php';
+        </script>";
+        //    echo 'username or password is incorrect!';
+         }       
 ?>

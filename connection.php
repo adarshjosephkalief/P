@@ -10,7 +10,7 @@
 //     }   -->
 
 
-<?php    
+<!--  
     $host = "localhost";  
     $user = "root";  
     $password = "password";  
@@ -26,4 +26,29 @@
     if($data===false) {  
         die("Connection error");  
     }  
-?> 
+  -->
+
+  onsubmit="return validation()"
+
+  <script>  
+        function validation()  
+        {  
+            var un=document.f1.username.value;  
+            var pw=document.f1.password.value;  
+            if(un.length=="" && pw.length=="") {  
+                alert("User Name and Password fields are empty");  
+                return false;  
+            }  
+            else  
+            {  
+                if(un.length=="") {  
+                    alert("User Name is empty");  
+                    return false;  
+                }   
+                if (pw.length=="") {  
+                alert("Password field is empty");  
+                return false;  
+                }  
+            }                             
+        }  
+    </script>

@@ -8,15 +8,21 @@ if(!isset($_SESSION["usertype"]) || ($_SESSION["usertype"]!=='user'))
 }
 ?>
 
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" href="style.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User</title>
+    <title> <?php echo $_SESSION["username"]?>'s dashboard</title>
 </head>
 <body>
-User page:<?php echo $_SESSION["username"] ?>
-<a href="logout.php">Logout</a>
+    <div class="topnav">
+        <a class="active" href="userhome.php">Home</a>
+        <a href="logout.php">Logout</a>
+    </div>
+    User page:<?php echo $_SESSION["username"] ?>
 </body>
 </html>
