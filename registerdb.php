@@ -1,47 +1,47 @@
-<?
-$host = "localhost";  
-    $user = "root";  
-    $password = "password";  
-    $db = "P";  
+<?php
+    if(isset($_POST['submit']))
+    {
+  $host = "localhost";  
+  $user = "root";  
+  $password = "password";  
+  $db = "P";  
+$conn = mysqli_connect($host, $user, $password, $db);  
+if($conn===false) 
+{  
+    die("Connection error");  
+} 
 
-    $conn = mysqli_connect($host, $user, $password, $db);  
-    if($conn===false) 
-    {  
-        die("Connection error");  
-    } 
+$first_name=$_POST['first_name'];
+$last_name=$_POST['last_name'];
+$email=$_POST['email'];
+$rusername=$_POST['usernamereg'];
+$password1=$_POST['password1'];
+$password2=$_POST['password2'];
 
-$username=$_REQUEST['username'];
-$password=$_REQUEST['password1'];
-$sql="INSERT INTO login (username,password,usertype) VALUES ($username,$password1,user);";
+$validuser="SELECT id FROM login WHERE username = '$rusername'";
+$validation=mysqli_query($conn,$validuser);
+$count=mysqli_num_rows($validation);
 
-if(mysqli_query($conn,$sql))
+if($count==0)
 {
-echo "<h3>data stored in a database successfully."
-                . " Please browse your localhost php my admin"
-                . " to view the updated data</h3>";
+  $sql="INSERT INTO login (username,password,usertype,first_name,last_name,email) VALUES ('$rusername','$password1','user','$first_name','$last_name','$email')";
+  if(mysqli_query($conn,$sql))
+  {
+    echo "<script>
+    alert('Sucessfully Registered!');
+    window.location.href='login.php';
+     </script>";
+  }
 }
-
+  else
+{
+  echo "<script>
+    alert('Username already taken!');
+    window.location.href='register.php';
+     </script>";
+} 
+    }
+    else{
+      header("location:login.php");
+    }
 ?>
-
-
-
-<!-- 
-// if (isset($_POST['submit'])) {
-//     $username = $_POST['username'];
-//     $password = $_POST['password'];
-//     $query    = "INSERT into login (username,password,usertype)
-//                  VALUES ('$username', '$password', 'user')";
-//     $result   = mysqli_query($data, $query);
-//     if ($result) {
-//         echo "<div class='form'>
-//               <h3>You are registered successfully.</h3><br/>
-//               <p class='link'>Click here to <a href='login.php'>Login</a></p>
-//               </div>";
-//     } else 
-//     {
-//         echo "<div class='form'>
-//               <h3>Required fields are missing.</h3><br/>
-//               <p class='link'>Click here to <a href='registration.php'>registration</a> again.</p>
-//               </div>";
-//     }
-// } -->

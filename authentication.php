@@ -4,7 +4,8 @@
     // {
 	// header("location:login.php");
     // }
-
+    if(isset($_POST['submit']))
+    {
    
     $host = "localhost";  
     $user = "root";  
@@ -56,4 +57,8 @@
         </script>";
         //    echo 'username or password is incorrect!';
          }       
+        }
+        else{
+            header("location:login.php");
+        }
 ?>

@@ -6,6 +6,7 @@ session_start();
 // }
 
 
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -17,7 +18,7 @@ session_start();
 </head>
 <body>
     <div class="Login">
-        <form id="f1" name="f1" action="authentication.php" method="post"  method="POST">
+        <form id="f1" name="f1" action="authentication.php" method="POST">
             <h1 style="font-size: 30px;">Hello.</h1>
             <label for="username">Username</label><br>
             <input type="text" id="username" name="username" placeholder="Enter Username" required><br>
@@ -25,9 +26,21 @@ session_start();
             <label for="password">Password</label><br>
             <input type="password" id="password" name="password" placeholder="••••••••" required><br>
             <br>
+            <input type="checkbox" onclick="visfunc()">Show Password
+            <script> function visfunc() {
+             var x = document.getElementById("password");
+              if (x.type === "password") {
+                x.type = "text";
+                } else {
+                x.type = "password";
+                 }
+                }
+            </script>
+            <br>
+            <br>
             <button class="button button1" type="submit" name="submit" value="Login">Login</button><br>
             <br>
-            <a href="register.html">Not registered?</a>
+            <a href="register.php">Not registered?</a>
 
         </form>
     </div>

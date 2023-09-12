@@ -4,7 +4,7 @@
     <link rel="stylesheet" href="style.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Register</title>    
 </head>
 <body>
     <div class="Register">
@@ -20,14 +20,14 @@
             <input type="email" id="email" name="email" placeholder="Enter Email" required><br>
             <br>
             <label for="username">Username</label><br>
-            <input type="text" id="username" name="username" placeholder="Enter Username" required><br>
+            <input type="text" id="usernamereg" name="usernamereg" placeholder="Enter Username" required><br>
             <br>
             <label for="password1">Password</label><br>
             <input type="password" id="password1" name="password1" placeholder="••••••••" required><br><br>
             <label for="password2">Confirm Password</label><br>
             <input type="password" id="password2" name="password2" placeholder="••••••••" required><br>
             <br>
-            <button class="button3 button_3" type="submit" value="Submit">Submit</button><br>
+            <button class="button3 button_3" name="submit" type="submit" value="submit">Submit</button><br>
             <br>
             <a href="login.php">Already registered?</a>
 
