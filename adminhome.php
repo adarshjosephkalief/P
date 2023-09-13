@@ -2,9 +2,13 @@
 session_start();
 
 
-if(!isset($_SESSION["usertype"]) || ($_SESSION["usertype"]!=='admin'))
+if(!isset($_SESSION["usertype"]))
 {
 	header("location:login.php");
+}
+if($_SESSION["usertype"]=='user')
+{
+	header("location:userhome.php");
 }
 
 ?>
