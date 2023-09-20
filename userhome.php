@@ -67,7 +67,10 @@ if($_SESSION["usertype"]=='admin')
     curl_close($ch);
     $result=json_decode($result,true);
     echo str_replace("\n", '<br>', $result['choices'][0]['message']['content']);
-    echo $result['choices'][0]['message']['content'];
+    // echo $result['choices'][0]['message']['content'];
+    // echo '<pre>';
+    // print_r($result);
+    // echo '</pre>';
 }
     ?>
     <form id="f3" name="f3" method="POST">
