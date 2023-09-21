@@ -57,7 +57,7 @@ if($_SESSION["usertype"]=='admin')
     
     $headers = array();
     $headers[] = 'Content-Type: application/json';
-    $headers[] = 'Authorization:Bearer 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';
+    $headers[] = 'Authorization:Bearer ';
     curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
     
     $result = curl_exec($ch);
@@ -74,8 +74,8 @@ if($_SESSION["usertype"]=='admin')
 }
     ?>
     <form id="f3" name="f3" method="POST">
-        <input type="text" name="str" placeholder="Get me details of the company QBurst."required width="100%">
-        <button class="button button1" type="submit" name="submit" value="Enter">Enter</button><br>
+        <input class="enter" type="text" name="str" placeholder="Get me details of QBurst."required width="100%">
+        <button class="button button1" type="submit" name="submit" value="Enter">Submit</button><br>
     </form>
 </body>
 </html>
