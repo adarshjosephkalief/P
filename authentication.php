@@ -26,14 +26,15 @@
 
     if ($row) {
         $usertype = $row['usertype'];
-        $_SESSION['username'] = $username;
-        $_SESSION['usertype'] = $usertype;
+        // $_SESSION['username'] = $username;
+        // $_SESSION['usertype'] = $usertype;
     
     if($row['usertype']==='user')
     {
 
         $_SESSION['username']=$username;
         $_SESSION['usertype'] = $usertype;
+        session_regenerate_id(true); 
         header("location:userhome.php");
         exit;
     }
@@ -41,6 +42,7 @@
     {
         $_SESSION['username']=$username;
         $_SESSION['usertype'] = $usertype;
+        session_regenerate_id(true); 
         header("location:adminhome.php");
         exit;
     }

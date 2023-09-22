@@ -41,3 +41,8 @@ COMMITS
 
 #Tenth Commit
 -> Added Admin dashboard with user removal
+
+#Eleventh Commit
+-> Fixed session vulnerability issues
+-> Added Dashboard pages for user/admin
+

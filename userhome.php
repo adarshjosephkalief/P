@@ -1,6 +1,9 @@
 <?php
 session_start();
+session_regenerate_id(true); 
 
+// var_dump($_SESSION);
+// echo "Session ID: " . session_id();
 
 if(!isset($_SESSION["usertype"]))
 {
@@ -10,6 +13,7 @@ if($_SESSION["usertype"]=='admin')
 {
 	header("location:adminhome.php");
 }
+
 ?>
 
 
@@ -20,11 +24,12 @@ if($_SESSION["usertype"]=='admin')
     <link rel="stylesheet" href="style.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> <?php echo $_SESSION["username"]?>'s dashboard</title>
+    <title> <?php echo $_SESSION["username"]?>'s home</title>
 </head>
 <body>
     <div class="topnav">
         <a class="active" href="userhome.php">Home</a>
+        <a href="userdash.php">Dashboard</a>
         <a href="logout.php">Logout</a>
     </div>
     User page:<?php echo $_SESSION["username"] ?>
