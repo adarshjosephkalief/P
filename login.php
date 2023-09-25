@@ -1,4 +1,4 @@
-<?
+<?php
 session_start();
 // if(isset($_SESSION["username"])){
 //      header('Location: logout.php');
@@ -8,6 +8,7 @@ session_start();
 
 
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -36,6 +37,7 @@ session_start();
                  }
                 }
             </script>
+            
             <br>
             <br>
             <button class="button button1" type="submit" name="submit" value="Login">Login</button><br>
