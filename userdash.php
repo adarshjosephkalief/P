@@ -52,9 +52,47 @@ $password1=$_POST['password1'];
 }
     }
 ?>
+<?php
+error_reporting(0);
+ 
+$msg = "";
+ 
+// If upload button is clicked ...
+if (isset($_POST['upload'])) {
+ 
+    $filename = $_FILES["uploadfile"]["name"];
+    $tempname = $_FILES["uploadfile"]["tmp_name"];
+    $folder = "./image/" . $filename;
+ 
 
+    $host = "localhost";  
+    $user = "root";  
+    $password = "password";  
+    $datab = "P";  
 
-
+    $db = mysqli_connect($host, $user, $password, $datab);  
+    if($data===false) {  
+        die("Connection error");  
+    }  
+    $rusername=$_SESSION['username'];
+    // Get all the submitted data from the form
+    $mysql = "UPDATE login SET filename = '$filename' where username = '$rusername'";
+ 
+    // Execute query
+    mysqli_query($db, $mysql);
+ 
+    // Now let's move the uploaded image into the folder: image
+    if (move_uploaded_file($tempname, $folder)) {
+        echo "<script>
+        alert('Image uploaded successfully!');
+         </script>";
+    } else {
+        echo "<script>
+        alert('Image uploaded successfully!');
+         </script>";
+    }
+}
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -128,6 +166,15 @@ $password1=$_POST['password1'];
             </script>
         </form>
     </div>
-    
+    <div id="content">
+        <form method="POST" action="" enctype="multipart/form-data">
+            <div class="form-group">
+                <input class="form-control" type="file" name="uploadfile" value="" />
+            </div>
+            <div class="form-group">
+                <button class="btn btn-primary" type="submit" name="upload">UPLOAD</button>
+            </div>
+        </form>
+    </div>
 </body>
 </html>

@@ -177,6 +177,19 @@ User Home
   transform: scale(1.5);
 }
 
+.image2 {
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  margin-top: -500px;
+  margin-left: 50px;
+  float: left;
+}
+
+.head {
+  margin-left: 150px;
+}
+
 /*
 Admin Home
 */
@@ -312,3 +325,4 @@ img{
   color: white; 
   border: 2px solid #4CAF50;
 }
+

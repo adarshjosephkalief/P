@@ -4,3 +4,4 @@ RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_URI} /(.*)/$
 RewriteRule ^ /%1 [R=301,L]
 ErrorDocument 404 /P/error404.php
+Options -Indexes

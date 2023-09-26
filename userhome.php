@@ -32,7 +32,8 @@ if($_SESSION["usertype"]=='admin')
         <a href="userdash.php">Dashboard</a>
         <a href="logout.php">Logout</a>
     </div>
-    User page:<?php echo $_SESSION["username"] ?>
+    <?php echo "<h1 class='head'>Hello, " . $_SESSION["username"] . "!</h1>"; ?>
+
     <?php
     if(isset ($_POST['str']))
     {
@@ -84,3 +85,21 @@ if($_SESSION["usertype"]=='admin')
     </form>
 </body>
 </html>
+<?php
+        $host = "localhost";  
+        $user = "root";  
+        $password = "password";  
+        $db = "P";  
+      $conn = mysqli_connect($host, $user, $password, $db);  
+      if($conn===false) 
+      {  
+          die("Connection error");  
+      } 
+        $rusername=$_SESSION["username"];
+        $query = "select filename from login where username = '$rusername'";
+        $result = mysqli_query($conn, $query);
+        while ($row = mysqli_fetch_assoc($result)) {
+            echo 'hi';
+            echo '<img src="./image/'.$row['filename'].'"class="image2">';
+        }
+        ?>
