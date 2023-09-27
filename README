@@ -17,10 +17,11 @@ COMMITS
 -> Session 
 
 #Fourth Commit
+->Minor additions
 
 
 #Fifth Commit
-
+->Minor additions
 
 #Sixth Commit
 -> Pages created
@@ -29,7 +30,7 @@ COMMITS
 -> Register feature
 
 #Seventh Commit
-
+->Minor additions
 
 #Eighth Commit
 -> GPT integration
@@ -55,3 +56,10 @@ COMMITS
 #Thirteenth Commit
 ->Added profile picture feature
 ->Fixed issues
+
+#Fourteenth Commit
+->Fixed issues
+->Profile picture feature fixed
+->Created Admin registration
+->CSS fixes
+->Registration fixes

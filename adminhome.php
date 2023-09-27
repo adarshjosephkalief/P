@@ -45,6 +45,7 @@ $delquery=mysqli_query($conn,$delete);
 
 ?>
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -57,9 +58,10 @@ $delquery=mysqli_query($conn,$delete);
     <div class="topnav">
         <a class="active" href="adminhome.php">Home</a>
         <a href="admindash.php">Dashboard</a>
+        <a href="adminreg.php">Register</a>
         <a href="logout.php">Logout</a>
     </div>
-    Admin page:<?php echo $_SESSION["username"]."<br>" ?>
+    <?php echo "<h1 class='headadm'>Hello, " . $_SESSION["username"] . "!</h1>"; ?>
     <?php 
         $host = "localhost";  
         $user = "root";  
@@ -85,3 +87,21 @@ $delquery=mysqli_query($conn,$delete);
     ?>
 </body>
 </html>
+<?php
+        $host = "localhost";  
+        $user = "root";  
+        $password = "password";  
+        $db = "P";  
+      $conn = mysqli_connect($host, $user, $password, $db);  
+      if($conn===false) 
+      {  
+          die("Connection error");  
+      } 
+        $rusername=$_SESSION["username"];
+        $query = "select filename from login where username = '$rusername'";
+        $result = mysqli_query($conn, $query);
+        while ($row = mysqli_fetch_assoc($result)) {
+            echo '<img src="./image/'.$row['filename'].'"class="image3">';
+        }
+        ?>
+

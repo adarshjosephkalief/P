@@ -24,7 +24,7 @@ $count=mysqli_num_rows($validation);
 
 if($count==0)
 {
-  $sql="INSERT INTO login (username,password,usertype,first_name,last_name,email) VALUES ('$rusername','$password1','user','$first_name','$last_name','$email')";
+  $sql="INSERT INTO login (username,password,usertype,first_name,last_name,email,filename) VALUES ('$rusername','$password1','user','$first_name','$last_name','$email','default.jpeg')";
   if(mysqli_query($conn,$sql))
   {
     echo "<script>
@@ -67,9 +67,9 @@ if($count==0)
             <input type="text" id="usernamereg" name="usernamereg" placeholder="Enter Username" required><br>
             <br>
             <label for="password1">Password</label><br>
-            <input type="password" id="password1" name="password1" placeholder="••••••••" required><br><br>
+            <input type="password" id="password1" name="password1" placeholder="••••••••" required maxlength="10"><br><br>
             <label for="password2">Confirm Password</label><br>
-            <input type="password" id="password2" name="password2" placeholder="••••••••" required onkeyup="validate_password()"><br>
+            <input type="password" id="password2" name="password2" placeholder="••••••••" required onkeyup="validate_password()" maxlength="10"><br>
             <br>
             <span id="wrong_pass_alert"></span>
             <button id="create" class="button0" name="submit" type="submit" value="submit" onclick ="wrong_pass_alert()">Submit</button><br>

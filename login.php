@@ -20,7 +20,7 @@ session_start();
 <body>
     <div class="Login">
         <form id="f1" name="f1" action="authentication.php" method="POST">
-            <h1 style="font-size: 30px;">Hello.</h1>
+            <h1 style="font-size: 30px;">Login</h1>
             <label for="username">Username</label><br>
             <input type="text" id="username" name="username" placeholder="Enter Username" required><br>
             <br>

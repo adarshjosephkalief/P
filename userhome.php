@@ -72,7 +72,8 @@ if($_SESSION["usertype"]=='admin')
     }
     curl_close($ch);
     $result=json_decode($result,true);
-    echo str_replace("\n", '<br>', $result['choices'][0]['message']['content']);
+    $gptresult=str_replace("\n", '<br>', $result['choices'][0]['message']['content']);
+    echo '<p class="gpt">' . $gptresult . '</p>';
     // echo $result['choices'][0]['message']['content'];
     // echo '<pre>';
     // print_r($result);
@@ -99,7 +100,6 @@ if($_SESSION["usertype"]=='admin')
         $query = "select filename from login where username = '$rusername'";
         $result = mysqli_query($conn, $query);
         while ($row = mysqli_fetch_assoc($result)) {
-            echo 'hi';
             echo '<img src="./image/'.$row['filename'].'"class="image2">';
         }
         ?>

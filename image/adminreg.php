@@ -1,18 +1,19 @@
+
 <?php
 session_start();
 session_regenerate_id(true); 
-
-// var_dump($_SESSION);
 // echo "Session ID: " . session_id();
+// var_dump($_SESSION);
 
 if(!isset($_SESSION["usertype"]))
 {
 	header("location:login.php");
 }
-if($_SESSION["usertype"]=='admin')
+if($_SESSION["usertype"]=='user')
 {
-	header("location:adminhome.php");
+	header("location:userhome.php");
 }
+
 ?>
 
 <?php
@@ -30,68 +31,32 @@ if($conn===false)
 
 $first_name=$_POST['first_name'];
 $last_name=$_POST['last_name'];
-$rusername=$_SESSION['username'];
+$email=$_POST['email'];
+$rusername=$_POST['usernamereg'];
 $password1=$_POST['password1'];
+$password2=$_POST['password2'];
 
+$validuser="SELECT id FROM login WHERE username = '$rusername'";
+$validation=mysqli_query($conn,$validuser);
+$count=mysqli_num_rows($validation);
 
-  $sql="UPDATE login SET first_name = '$first_name', last_name = '$last_name', password = '$password1' WHERE username = '$rusername'";
+if($count==0)
+{
+  $sql="INSERT INTO login (username,password,usertype,first_name,last_name,email,filename) VALUES ('$rusername','$password1','admin','$first_name','$last_name','$email','admin.jpg')";
   if(mysqli_query($conn,$sql))
   {
     echo "<script>
-    alert('Sucessfully Updated! Please Login again!');
-    window.location.href='logout.php';
+    alert('Sucessfully Registered!');
      </script>";
   }
-
+}
   else
 {
   echo "<script>
-    alert('Error!');
-    window.location.href='userdash.php';
+    alert('Username already taken!');
      </script>";
-}
+} 
     }
-?>
-<?php
-error_reporting(0);
- 
-$msg = "";
- 
-// If upload button is clicked ...
-if (isset($_POST['upload'])) {
- 
-    $filename = $_FILES["uploadfile"]["name"];
-    $tempname = $_FILES["uploadfile"]["tmp_name"];
-    $folder = "./image/" . $filename;
- 
-
-    $host = "localhost";  
-    $user = "root";  
-    $password = "password";  
-    $datab = "P";  
-
-    $db = mysqli_connect($host, $user, $password, $datab);  
-    if($data===false) {  
-        die("Connection error");  
-    }  
-    $rusername=$_SESSION['username'];
-    // Get all the submitted data from the form
-    $mysql = "UPDATE login SET filename = '$filename' where username = '$rusername'";
- 
-    // Execute query
-    mysqli_query($db, $mysql);
- 
-    // Now let's move the uploaded image into the folder: image
-    if (move_uploaded_file($tempname, $folder)) {
-        echo "<script>
-        alert('Image uploaded successfully!');
-         </script>";
-    } else {
-        echo "<script>
-        alert('Image uploaded successfully!');
-         </script>";
-    }
-}
 ?>
 
 <!DOCTYPE html>
@@ -104,25 +69,25 @@ if (isset($_POST['upload'])) {
 </head>
 <body>
     <div class="topnav">
-        <a href="userhome.php">Home</a>
-        <a class="active" href="userdash.php">Dashboard</a>
+        <a href="adminhome.php">Home</a>
+        <a href="admindash.php">Dashboard</a>
+        <a class="active" href="adminreg.php">Register</a>
         <a href="logout.php">Logout</a>
     </div>
-
-    <div class="updateuser">
-    <form id="f4" name="f4" action="" method="POST">
-            <h1 style="font-size: 30px;">Update Profile</h1>
+    <div class="Register">
+        <form id="f2" name="f2" action="" method="POST">
+            <h1 style="font-size: 30px;">Register</h1>
             <label for="first_name">First Name</label><br>
-            <input type="text" id="first_name" name="first_name" value="<?php echo $_SESSION['first_name'] ?>" required><br>
+            <input type="text" id="first_name" name="first_name" placeholder="Enter First Name" required><br>
             <br>
             <label for="last_name">Last Name</label><br>
-            <input type="text" id="last_name" name="last_name" value="<?php echo $_SESSION['last_name'] ?>" required><br>
+            <input type="text" id="last_name" name="last_name" placeholder="Enter Last Name" required><br>
             <br>
             <label for="email">Email</label><br>
-            <input type="email" id="email" name="email" value="<?php echo $_SESSION['email'] ?>" readonly><br>
+            <input type="email" id="email" name="email" placeholder="Enter Email" required><br>
             <br>
             <label for="username">Username</label><br>
-            <input type="text" id="usernamereg" name="usernamereg" value="<?php echo $_SESSION['username'] ?>" readonly><br>
+            <input type="text" id="usernamereg" name="usernamereg" placeholder="Enter Username" required><br>
             <br>
             <label for="password1">Password</label><br>
             <input type="password" id="password1" name="password1" placeholder="••••••••" required><br><br>
@@ -155,28 +120,11 @@ if (isset($_POST['upload'])) {
             function wrong_pass_alert() {
             if (document.getElementById('password1').value != "" &&
             document.getElementById('password2').value != "") {
-            {
-            alert("Your response is submitted.");
-            }
+            alert("Your response is submitted");
             } else {
             alert("Please fill all the fields");
             }
             }
             </script>
-        </form>
-    </div>
-    <div id="content">
-        <form id="up" name="up" method="POST" action="" enctype="multipart/form-data">
-            <div class="form-group">
-            <h1 style="font-size: 30px;">Change Avatar</h1>
-
-                <input class="button010" type="file" name="uploadfile" value="" />
-            </div>
-            <div class="form-group">
-                <br>
-                <button class="button0" type="submit" name="upload">Change Profile Picture</button>
-            </div>
-        </form>
-    </div>
 </body>
 </html>
